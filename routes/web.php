@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/admin/dashboard', 'Backend\DashboardController@index');
+
+Auth::routes();
+
+Route::get('/home', 'Frontend\HomeController@index')->name('home');
