@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        $request->user()->authorizeRoles(['employee', 'manager']);
+//        $request->user()->authorizeRoles('manager');
         return view('frontend.index');
     }
 }
