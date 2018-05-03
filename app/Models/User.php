@@ -32,21 +32,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    /**
-     * @param string|array $roles
-     * @return bool
-     */
-    public function authorizeRoles($roles)
-    {
-        if (is_array($roles)) {
-            return $this->hasAnyRole($roles) ||
-            abort(401, 'This action is unauthorized.');
-
-        }
-
-        return $this->hasRole($roles) ||
-        abort(401, 'This action is unauthorized.');
-    }
+//    /**
+//     * @param string|array $roles
+//     * @return bool
+//     */
+//    public function authorizeRoles($roles)
+//    {
+//        if (is_array($roles)) {
+//            return $this->hasAnyRole($roles) ||
+//            abort(401, 'This action is unauthorized.');
+//
+//        }
+//
+//        return $this->hasRole($roles) ||
+//        abort(401, 'This action is unauthorized.');
+//    }
 
     /**
      * @param array $roles
@@ -64,5 +64,14 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    /**
+     * @param string $permission
+     * @return bool
+     */
+    public function hasPermission($permission)
+    {
+        return null !== $this->permissions()->where('name', $permission)->first();
     }
 }

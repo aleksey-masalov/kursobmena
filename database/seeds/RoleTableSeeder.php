@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Role;
+use App\Models\Permission;
 
 class RoleTableSeeder extends Seeder
 {
@@ -12,24 +13,23 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
+        $permission = Permission::where('name', Permission::PERMISSION_TYPE_SUPER_ADMIN)->first();
+
         $roleAdministrator = new Role();
         $roleAdministrator->name = Role::ROLE_TYPE_ADMIN;
-        $roleAdministrator->description = ucwords(Role::ROLE_TYPE_ADMIN);
         $roleAdministrator->save();
+        $roleAdministrator->permissions()->attach($permission);
 
         $roleManager = new Role();
         $roleManager->name = Role::ROLE_TYPE_MANAGER;
-        $roleManager->description = ucwords(Role::ROLE_TYPE_MANAGER);
         $roleManager->save();
 
         $roleService = new Role();
         $roleService->name = Role::ROLE_TYPE_SERVICE;
-        $roleService->description = ucwords(Role::ROLE_TYPE_SERVICE);
         $roleService->save();
 
         $roleUser = new Role();
         $roleUser->name = Role::ROLE_TYPE_USER;
-        $roleUser->description = ucwords(Role::ROLE_TYPE_USER);
         $roleUser->save();
     }
 }
