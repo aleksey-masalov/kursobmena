@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Auth Controllers
+ * All route names are prefixed with 'auth.'.
+ */
+Route::get('login', 'LoginController@showLoginForm')->name('login');
+Route::post('login', 'LoginController@login');
+Route::post('logout', 'LoginController@logout')->name('logout');
+
+Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'RegisterController@register');
+
+Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+
+Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm');
+Route::post('password/reset', 'ResetPasswordController@reset');

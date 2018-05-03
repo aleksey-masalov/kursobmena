@@ -1,8 +1,6 @@
 @extends('backend.layout.app')
 
-@section('title')
-Administrative Panel
-@endsection
+@section('title', 'Administrative Panel')
 
 @section('content')
     <section class="content-header">

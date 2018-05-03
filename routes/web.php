@@ -11,12 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/*
+ * Auth Routes
+ */
+Route::group(['namespace' => 'Auth'], function () {
+    includeRouteFiles(__DIR__.'/Auth/');
 });
 
-Route::get('/admin/dashboard', 'Backend\DashboardController@index');
+/*
+ * Frontend Routes
+ */
+Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+    includeRouteFiles(__DIR__.'/Frontend/');
+});
 
-Auth::routes();
+/*
+ * Backend Routes
+ */
+Route::group(['namespace' => 'Backend', 'as' => 'backend.', 'prefix' => 'admin'], function () {
+    includeRouteFiles(__DIR__.'/Backend/');
+});
 
-Route::get('/home', 'Frontend\HomeController@index')->name('home');
+/*
+ * Locale Routes
+ */
+Route::group(['namespace' => 'Locale', 'as' => 'locale.'], function () {
+    includeRouteFiles(__DIR__.'/Locale/');
+});
