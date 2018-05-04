@@ -36,5 +36,11 @@ return [
                 ]
             ]
         ]
+    ],
+    'backend' => [
+        'dashboard' => [
+            'title' => 'Dashboard',
+            'description' => 'Administrative Panel'
+        ]
     ]
 ];

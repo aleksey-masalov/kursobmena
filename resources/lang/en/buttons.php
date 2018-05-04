@@ -11,6 +11,9 @@ return [
         'cancel' => 'Cancel',
         'continue' => 'Continue',
         'back' => 'Back',
+
+        'home'   => 'Home',
+        'logout' => 'Logout',
     ],
     'frontend' => [
         'auth' => [

@@ -19,9 +19,17 @@
         <div class="wrapper">
             @include('backend.include.header')
             @include('backend.include.sidebar')
+
             <div class="content-wrapper">
-                @yield('content')
+                <section class="content-header">
+                    @yield('header')
+                </section>
+
+                <section class="content container-fluid">
+                    @yield('content')
+                </section>
             </div>
+
             @include('backend.include.footer')
             @include('backend.include.toolbar')
         </div>

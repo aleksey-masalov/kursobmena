@@ -35,6 +35,17 @@ if (! function_exists('homeRoute')) {
     }
 }
 
+if (! function_exists('userName')) {
+
+    /**
+     * @return string
+     */
+    function userName()
+    {
+        return auth()->check() ? auth()->user()->name : 'Guest';
+    }
+}
+
 //if (! function_exists('app_name')) {
 //    /**
 //     * Helper to grab the application name.
