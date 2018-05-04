@@ -11,5 +11,13 @@ return [
         'cancel' => 'Cancel',
         'continue' => 'Continue',
         'back' => 'Back',
+    ],
+    'frontend' => [
+        'auth' => [
+            'register' => 'Register',
+            'login' => 'Login',
+            'password_reset_link' => 'Send Password Reset Link',
+            'password_reset' => 'Reset Password'
+        ]
     ]
 ];

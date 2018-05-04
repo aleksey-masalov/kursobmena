@@ -3,7 +3,7 @@
 if (!function_exists('includeRouteFiles')) {
 
     /**
-     * @param $folder
+     * @param string $folder
      */
     function includeRouteFiles($folder)
     {
@@ -24,10 +24,17 @@ if (!function_exists('includeRouteFiles')) {
     }
 }
 
-//
-//
-//
-//
+if (! function_exists('homeRoute')) {
+
+    /**
+     * @return string
+     */
+    function homeRoute()
+    {
+        return '/';
+    }
+}
+
 //if (! function_exists('app_name')) {
 //    /**
 //     * Helper to grab the application name.

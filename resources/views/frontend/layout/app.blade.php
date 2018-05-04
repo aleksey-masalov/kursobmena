@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }} | @yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('frontend/css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('frontend/js/app.js') }}" defer></script>
 </head>
 <body>
     @yield('content')

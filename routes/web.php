@@ -14,7 +14,7 @@
 /*
  * Auth Routes
  */
-Route::group(['namespace' => 'Auth'], function () {
+Route::group(['namespace' => 'Auth', 'as' => ''], function () {
     includeRouteFiles(__DIR__.'/Auth/');
 });
 

@@ -2,5 +2,5 @@
     <div class="pull-right hidden-xs">
     </div>
 
-    <strong>Copyright &copy; 2016 <a href="{{ url('/') }}">{{ config('app.name') }}</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ url(homeRoute()) }}">{{ config('app.name') }}</a>.</strong> {{ trans('strings.general.all_rights_reserved') }}.
 </footer>

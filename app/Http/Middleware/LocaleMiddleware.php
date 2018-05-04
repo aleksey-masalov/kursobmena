@@ -13,7 +13,7 @@ class LocaleMiddleware
      * @param Closure $next
      * @return Closure
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if (config('locale.status')
             && session()->has('locale')
