@@ -6,7 +6,7 @@
 
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{{ trans('strings.general.toggle_navigation') }}</span>
         </a>
 
         <div class="navbar-custom-menu">
@@ -44,14 +44,19 @@
                                 </a>
                             </div>
 
-                            @if(auth()->check())
-                                <div class="pull-right">
+                            <div class="pull-right">
+                                @if(auth()->check())
                                     <a href="{{ route('logout') }}" class="btn btn-danger btn-flat">
                                         <i class="fa fa-sign-out"></i>
                                         {{ trans('buttons.general.logout') }}
                                     </a>
-                                </div>
-                            @endif
+                                @else
+                                    <a href="{{ route('login') }}" class="btn btn-primary btn-flat">
+                                        <i class="fa fa-sign-in"></i>
+                                        {{ trans('buttons.general.login') }}
+                                    </a>
+                                @endif
+                            </div>
                         </li>
                     </ul>
                 </li>

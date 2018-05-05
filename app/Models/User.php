@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -27,6 +28,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class);
@@ -48,30 +52,30 @@ class User extends Authenticatable
 //        abort(401, 'This action is unauthorized.');
 //    }
 
-    /**
-     * @param array $roles
-     * @return bool
-     */
-    public function hasAnyRole($roles)
-    {
-        return null !== $this->roles()->whereIn('name', $roles)->first();
-    }
-
-    /**
-     * @param string $role
-     * @return bool
-     */
-    public function hasRole($role)
-    {
-        return null !== $this->roles()->where('name', $role)->first();
-    }
-
-    /**
-     * @param string $permission
-     * @return bool
-     */
-    public function hasPermission($permission)
-    {
-        return null !== $this->permissions()->where('name', $permission)->first();
-    }
+//    /**
+//     * @param array $roles
+//     * @return bool
+//     */
+//    public function hasAnyRole($roles)
+//    {
+//        return null !== $this->roles()->whereIn('name', $roles)->first();
+//    }
+//
+//    /**
+//     * @param string $role
+//     * @return bool
+//     */
+//    public function hasRole($role)
+//    {
+//        return null !== $this->roles()->where('name', $role)->first();
+//    }
+//
+//    /**
+//     * @param string $permission
+//     * @return bool
+//     */
+//    public function hasPermission($permission)
+//    {
+//        return null !== $this->permissions()->where('name', $permission)->first();
+//    }
 }

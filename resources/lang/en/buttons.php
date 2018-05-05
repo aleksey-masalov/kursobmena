@@ -2,17 +2,19 @@
 
 return [
     'general' => [
-        'create' => 'Create',
-        'update' => 'Update',
-        'edit' => 'Edit',
-        'delete' => 'Delete',
-        'view' => 'View',
-        'save' => 'Save',
-        'cancel' => 'Cancel',
-        'continue' => 'Continue',
-        'back' => 'Back',
-
+        'crud' => [
+//            'create' => 'Create',
+//            'update' => 'Update',
+//            'edit' => 'Edit',
+//            'delete' => 'Delete',
+//            'view' => 'View',
+//            'save' => 'Save',
+//            'cancel' => 'Cancel',
+//            'back' => 'Back',
+//            'continue' => 'Continue',
+        ],
         'home'   => 'Home',
+        'login' => 'Login',
         'logout' => 'Logout',
     ],
     'frontend' => [

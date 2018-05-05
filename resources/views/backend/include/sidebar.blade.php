@@ -7,7 +7,7 @@
 
             <div class="pull-left info">
                 <p>{{ userName() }}</p>
-                <small><i class="fa fa-circle text-success"></i> Online</small>
+                <small><i class="fa fa-circle text-success"></i> {{ trans('strings.backend.user.status.online') }}</small>
             </div>
         </div>
 
