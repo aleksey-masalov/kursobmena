@@ -27,6 +27,7 @@
                 </section>
 
                 <section class="content container-fluid">
+                    @include('backend.include.messages')
                     @yield('content')
                 </section>
             </div>

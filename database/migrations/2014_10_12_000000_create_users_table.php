@@ -19,7 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
+            $table->string('confirmation_code', 32)->nullable();
+            $table->boolean('confirmed')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->string('avatar')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

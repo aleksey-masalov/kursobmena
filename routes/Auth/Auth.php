@@ -15,3 +15,6 @@ Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->na
 
 Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'ResetPasswordController@reset');
+
+Route::get('email/confirm/send/{confirmationCode}', 'ConfirmEmailController@confirm')->name('email.confirm');
+Route::get('email/confirm/resend', 'ConfirmEmailController@resend')->name('email.confirm.resend');

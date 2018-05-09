@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Events\Auth\UserRegisteredEvent;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -24,9 +29,37 @@ class RegisterController extends Controller
     /**
      * @return string
      */
-    public function redirectTo()
+    protected function redirectTo()
     {
         return homeRoute();
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new UserRegisteredEvent($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    /**
+     * @return Redirector|RedirectResponse|null
+     */
+    protected function registered()
+    {
+        if (config('auth.confirm_email')) {
+            $this->guard()->logout();
+
+            return redirect($this->redirectPath())->withFlashSuccess(trans('strings.frontend.auth.confirmation.sent'));
+        }
     }
 
     /**

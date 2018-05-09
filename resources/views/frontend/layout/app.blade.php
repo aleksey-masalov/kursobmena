@@ -10,6 +10,7 @@
     <script src="{{ asset('frontend/js/app.js') }}" defer></script>
 </head>
 <body>
+    @include('frontend.include.messages')
     @yield('content')
 </body>
 </html>

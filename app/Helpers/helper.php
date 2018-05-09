@@ -46,6 +46,17 @@ if (! function_exists('userName')) {
     }
 }
 
+if (! function_exists('generateConfirmationCode')) {
+
+    /**
+     * @return string
+     */
+    function generateConfirmationCode()
+    {
+        return bin2hex(random_bytes(32));
+    }
+}
+
 //if (! function_exists('app_name')) {
 //    /**
 //     * Helper to grab the application name.

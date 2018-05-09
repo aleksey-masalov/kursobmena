@@ -36,6 +36,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    /**
+     * @return bool
+     */
+    public function isConfirmedEmail()
+    {
+        return $this->confirmed === 1;
+    }
+
 //    /**
 //     * @param string|array $roles
 //     * @return bool

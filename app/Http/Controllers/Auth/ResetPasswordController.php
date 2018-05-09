@@ -20,8 +20,23 @@ class ResetPasswordController extends Controller
     /**
      * @return string
      */
-    public function redirectTo()
+    protected function redirectTo()
     {
         return homeRoute();
+    }
+
+    /**
+     * @param string $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetResponse($response)
+    {
+        if(config('auth.confirm_email') && !$this->guard()->user()->isConfirmedEmail()) {
+            $this->guard()->logout();
+
+            return redirect(route('login'))->withFlashWarning(trans('strings.frontend.auth.confirmation.password_changed'));
+        }
+
+        return redirect($this->redirectPath())->withFlashSuccess(trans($response));
     }
 }

@@ -1,0 +1,5 @@
+* check cases confirm/no confirm email for login functionality
+* limit of attempts email confirmation
+* create statistics by handle routes
+* statistics of unconfirmed emails with generation code
+* all mails format unification

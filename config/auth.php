@@ -13,6 +13,10 @@ return [
     |
     */
 
+    'registration' => env('ENABLE_REGISTRATION', true),
+
+    'confirm_email' => env('ENABLE_CONFIRM_EMAIL', true),
+
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
