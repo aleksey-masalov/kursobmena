@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use App\Models\Role;
-use App\Http\Controllers\Controller;
-use App\Events\Auth\UserRegisteredEvent;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\Auth\UserRegisterRequest;
+use App\Events\Auth\UserRegisteredEvent;
+use App\Models\User;
+use App\Models\Role;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
-
     /**
      * RegisterController constructor.
      */
@@ -27,39 +25,41 @@ class RegisterController extends Controller
     }
 
     /**
-     * @return string
+     * @return View
      */
-    protected function redirectTo()
+    public function showRegistrationForm()
     {
-        return homeRoute();
+        return view('auth.register');
     }
 
     /**
-     * @param Request $request
+     * @param UserRegisterRequest $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(UserRegisterRequest $request)
     {
-        $this->validator($request->all())->validate();
-
-        event(new UserRegisteredEvent($user = $this->create($request->all())));
+        $user = $this->create($request->all());
 
         $this->guard()->login($user);
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        return $this->registered($user);
     }
 
     /**
-     * @return Redirector|RedirectResponse|null
+     * @param User $user
+     * @return RedirectResponse
      */
-    protected function registered()
+    protected function registered(User $user)
     {
-        if (config('auth.confirm_email')) {
-            $this->guard()->logout();
+        event(new UserRegisteredEvent($user));
 
-            return redirect($this->redirectPath())->withFlashSuccess(trans('strings.frontend.auth.confirmation.sent'));
+        if (config('auth.confirm_email') === false) {
+            return redirect($this->redirectTo())->withFlashSuccess(trans('strings.frontend.auth.register.success'));
         }
+
+        $this->guard()->logout();
+
+        return redirect($this->redirectTo())->withFlashSuccess(trans('strings.frontend.auth.confirmation.sent'));
     }
 
     /**
@@ -82,15 +82,18 @@ class RegisterController extends Controller
     }
 
     /**
-     * @param array $data
-     * @return Validator
+     * @return string
      */
-    protected function validator(array $data)
+    protected function redirectTo()
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        return homeRoute();
+    }
+
+    /**
+     * @return StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

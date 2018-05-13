@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Auth;
 
-use App\Notifications\UserRegisteredConfirmEmail;
+use App\Notifications\ConfirmEmailNotification;
 use App\Models\User;
 use Mail;
 
@@ -16,7 +16,7 @@ class ConfirmEmailListener
     {
         if (config('auth.confirm_email')) {
             $user = $this->generateConfirmationCode($event->user);
-            $user->notify(new UserRegisteredConfirmEmail($user));
+            $user->notify(new ConfirmEmailNotification($user));
         }
     }
 

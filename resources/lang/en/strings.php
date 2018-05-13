@@ -15,6 +15,9 @@ return [
     ],
     'frontend' => [
         'auth' => [
+            'register' => [
+                'success' => 'Your account has been successfully created!'
+            ],
             'confirmation' => [
                 'sent'              => 'Thanks for signing up! Please check your email.',
                 'resent'            => 'Confirmation email has been sent.',

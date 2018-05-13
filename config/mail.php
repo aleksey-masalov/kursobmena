@@ -120,4 +120,18 @@ return [
         ],
     ],
 
+    'sender' => [
+        'admin' => [
+            'address' => env('MAIL_ADMIN_FROM_ADDRESS', 'admin@test.com'),
+            'name' => env('APP_NAME', 'admin@test.com'),
+        ],
+        'support' => [
+            'address' => env('MAIL_SUPPORT_FROM_ADDRESS', 'support@test.com'),
+            'name' => env('APP_NAME', 'support@test.com'),
+        ],
+        'noreply' => [
+            'address' => env('MAIL_NO_REPLY_FROM_ADDRESS', 'noreply@test.com'),
+            'name' => env('APP_NAME', 'noreply@test.com'),
+        ]
+    ],
 ];

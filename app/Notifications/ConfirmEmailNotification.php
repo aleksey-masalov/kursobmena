@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\User;
 
-class UserRegisteredConfirmEmail extends Notification
+class ConfirmEmailNotification extends Notification
 {
     /**
      * @var User
@@ -39,12 +39,12 @@ class UserRegisteredConfirmEmail extends Notification
         $user = $this->user;
 
         return (new MailMessage)
-            ->from(env('MAIL_USERNAME'))
-            ->subject('Successfully created new account')
-            ->greeting(sprintf('Hello %s', $user->name))
-            ->line('You have successfully registered to our system. Please activate your account.')
-            ->action('Click Here', route('email.confirm', $user->confirmation_code))
-            ->line('Thank you for using our application!');
+            ->from(config('mail.sender.noreply.address'), config('mail.sender.noreply.name'))
+            ->subject(trans('notification.confirm-email.subject'))
+            ->greeting(sprintf(trans('notification.confirm-email.greeting'), $user->name))
+            ->line(trans('notification.confirm-email.header'))
+            ->action(trans('notification.confirm-email.action'), route('email.confirm', $user->confirmation_code))
+            ->line(trans('notification.confirm-email.footer'));
     }
 
     /**

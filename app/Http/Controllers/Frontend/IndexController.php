@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class HomeController extends Controller
+class IndexController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * IndexController constructor.
      */
     public function __construct()
     {
@@ -21,11 +20,10 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return View
      */
-    public function index()
+    public function index(Request $request)
     {
 //        $request->user()->authorizeRoles(['employee', 'manager']);
 //        $request->user()->authorizeRoles('manager');

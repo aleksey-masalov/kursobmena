@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserRequestedConfirmEmailEvent;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Events\Auth\UserRequestedConfirmEmailEvent;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 
 class ConfirmEmailController extends Controller
 {
     /**
      * @param string $confirmationCode
-     * @return RedirectResponse|Redirector
+     * @return RedirectResponse
      */
     public function confirm($confirmationCode)
     {
@@ -35,7 +34,7 @@ class ConfirmEmailController extends Controller
 
     /**
      * @param Request $request
-     * @return RedirectResponse|Redirector
+     * @return RedirectResponse
      */
     public function resend(Request $request)
     {
