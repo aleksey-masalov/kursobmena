@@ -83,13 +83,13 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetResponse($response)
     {
-        if(config('auth.confirm_email') === false || $this->guard()->user()->isConfirmedEmail()){
-            return redirect($this->redirectTo())->withFlashSuccess(trans($response));
+        if(config('auth.confirm_email') !== false && !$this->guard()->user()->isConfirmedEmail()){
+            $this->guard()->logout();
+
+            return redirect(route('login'))->withFlashWarning(trans('strings.frontend.auth.confirmation.password_changed'));
         }
 
-        $this->guard()->logout();
-
-        return redirect(route('login'))->withFlashWarning(trans('strings.frontend.auth.confirmation.password_changed'));
+        return redirect($this->redirectTo())->withFlashSuccess(trans($response));
     }
 
     /**

@@ -51,21 +51,5 @@ class PermissionTableSeeder extends Seeder
         $permission = new Permission();
         $permission->name = Permission::PERMISSION_TYPE_VIEW_USER;
         $permission->save();
-
-        $permission = new Permission();
-        $permission->name = Permission::PERMISSION_TYPE_CREATE_SERVICE;
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->name = Permission::PERMISSION_TYPE_UPDATE_SERVICE;
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->name = Permission::PERMISSION_TYPE_DELETE_SERVICE;
-        $permission->save();
-
-        $permission = new Permission();
-        $permission->name = Permission::PERMISSION_TYPE_VIEW_SERVICE;
-        $permission->save();
     }
 }

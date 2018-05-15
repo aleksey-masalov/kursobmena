@@ -14,7 +14,7 @@ class ConfirmEmailListener
      */
     public function handle($event)
     {
-        if (config('auth.confirm_email')) {
+        if (config('auth.confirm_email') !== false && !$event->user->isConfirmedEmail()) {
             $user = $this->generateConfirmationCode($event->user);
             $user->notify(new ConfirmEmailNotification($user));
         }

@@ -12,6 +12,14 @@ use App\Http\Controllers\Controller;
 class ConfirmEmailController extends Controller
 {
     /**
+     * ConfirmEmailController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * @param string $confirmationCode
      * @return RedirectResponse
      */

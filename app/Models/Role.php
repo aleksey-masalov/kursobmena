@@ -9,7 +9,6 @@ class Role extends Model
 {
     const ROLE_TYPE_ADMIN = 'Administrator';
     const ROLE_TYPE_MANAGER = 'Manager';
-    const ROLE_TYPE_SERVICE = 'Service';
     const ROLE_TYPE_USER = 'User';
 
     const ROLE_TYPE_DEFAULT = self::ROLE_TYPE_USER;
@@ -33,5 +32,14 @@ class Role extends Model
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
+    }
+
+    /**
+     * @param string $permission
+     * @return bool
+     */
+    public function hasPermission($permission)
+    {
+        return null !== $this->permissions()->where('name', $permission)->first();
     }
 }

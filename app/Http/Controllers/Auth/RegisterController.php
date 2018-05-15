@@ -53,13 +53,13 @@ class RegisterController extends Controller
     {
         event(new UserRegisteredEvent($user));
 
-        if (config('auth.confirm_email') === false) {
-            return redirect($this->redirectTo())->withFlashSuccess(trans('strings.frontend.auth.register.success'));
+        if (config('auth.confirm_email') !== false) {
+            $this->guard()->logout();
+
+            return redirect($this->redirectTo())->withFlashSuccess(trans('strings.frontend.auth.confirmation.sent'));
         }
 
-        $this->guard()->logout();
-
-        return redirect($this->redirectTo())->withFlashSuccess(trans('strings.frontend.auth.confirmation.sent'));
+        return redirect($this->redirectTo())->withFlashSuccess(trans('strings.frontend.auth.register.success'));
     }
 
     /**

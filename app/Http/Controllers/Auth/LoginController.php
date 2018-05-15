@@ -107,13 +107,13 @@ class LoginController extends Controller
     {
         event(new UserLoggedInEvent($user));
 
-        if (config('auth.confirm_email') === false || $user->isConfirmedEmail()) {
-            return redirect()->intended($this->redirectTo());
+        if (config('auth.confirm_email') !== false && !$user->isConfirmedEmail()) {
+            $this->guard()->logout();
+
+            return redirect($this->redirectTo())->withFlashWarning(trans('strings.frontend.auth.confirmation.resend', ['email' => $user->email]));
         }
 
-        $this->guard()->logout();
-
-        return redirect($this->redirectTo())->withFlashWarning(trans('strings.frontend.auth.confirmation.resend', ['email' => $user->email]));
+        return redirect()->intended($this->redirectTo());
     }
 
     /**

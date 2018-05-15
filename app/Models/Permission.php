@@ -16,10 +16,6 @@ class Permission extends Model
     const PERMISSION_TYPE_UPDATE_USER = 'update-user';
     const PERMISSION_TYPE_DELETE_USER = 'delete-user';
     const PERMISSION_TYPE_VIEW_USER = 'view-user';
-    const PERMISSION_TYPE_CREATE_SERVICE = 'create-service';
-    const PERMISSION_TYPE_UPDATE_SERVICE = 'update-service';
-    const PERMISSION_TYPE_DELETE_SERVICE = 'delete-service';
-    const PERMISSION_TYPE_VIEW_SERVICE = 'view-service';
 
     /**
      * @var array
